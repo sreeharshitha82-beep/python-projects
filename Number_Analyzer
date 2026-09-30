@@ -1,0 +1,177 @@
+def display_menu():
+    print("\n========================================")
+    print("           NUMBER ANALYZER")
+    print("==========================================")
+    print("1. Check Even / Odd")
+    print("2. Check Prime")
+    print("3. Check Palindrome")
+    print("4. Generate Fibonacci Series")
+    print("5. Find Factorial")
+    print("6. Find Factors")
+    print("7. Reverse Number")
+    print("8. Check Armstrong Number")
+    print("9. Exit")
+    print("===========================================")
+
+
+def even_odd(number):
+    if number % 2 == 0:
+        return f"{number} is even."
+    else:
+        return f"{number} is odd."
+
+
+def is_prime(number):
+    if number < 2:
+        return False
+
+    for i in range(2, number):
+        if number % i == 0:
+            return False
+
+    return True
+
+
+def is_palindrome(number):
+    original = number
+    reversed_number = 0
+
+    while number > 0:
+        digit = number % 10
+        reversed_number = reversed_number * 10 + digit
+        number //= 10
+
+    return original == reversed_number
+
+
+def fibonacci(n):
+    series = []
+
+    a = 0
+    b = 1
+
+    for _ in range(n):
+        series.append(a)
+        a, b = b, a + b
+
+    return series
+
+
+def factorial(number):
+    result = 1
+
+    for i in range(1, number + 1):
+        result *= i
+
+    return result
+
+
+def find_factors(number):
+    factors = []
+
+    for i in range(1, number + 1):
+        if number % i == 0:
+            factors.append(i)
+
+    return factors
+
+
+def reverse_number(number):
+    reversed_number = 0
+
+    while number > 0:
+        digit = number % 10
+        reversed_number = reversed_number * 10 + digit
+        number //= 10
+
+    return reversed_number
+
+
+def is_armstrong(number):
+    original = number
+    number_of_digits = len(str(number))
+    total = 0
+
+    while number > 0:
+        digit = number % 10
+        total += digit ** number_of_digits
+        number //= 10
+
+    return total == original
+
+
+def main():
+
+    while True:
+
+        display_menu()
+
+        try:
+            choice = int(input("Enter your choice: "))
+
+            if choice == 9:
+                print("\nExiting the Number Analyzer. Goodbye!")
+                break
+
+            if choice in [1, 2, 3, 5, 6, 7, 8]:
+                number = int(input("Enter a number: "))
+
+            if choice == 1:
+                print(even_odd(number))
+
+            elif choice == 2:
+                if is_prime(number):
+                    print(f"{number} is a prime number.")
+                else:
+                    print(f"{number} is not a prime number.")
+
+            elif choice == 3:
+                if is_palindrome(number):
+                    print(f"{number} is a palindrome.")
+                else:
+                    print(f"{number} is not a palindrome.")
+
+            elif choice == 4:
+                n = int(input("How many Fibonacci terms do you want? "))
+
+                if n < 0:
+                    print("Please enter a non-negative number.")
+                else:
+                    print("Fibonacci Series:")
+                    print(fibonacci(n))
+
+            elif choice == 5:
+                if number < 0:
+                    print("Factorial is not defined for negative numbers.")
+                else:
+                    print(f"{number}! = {factorial(number)}")
+
+            elif choice == 6:
+                if number == 0:
+                    print("Every non-zero number divides 0, so this option is not handled here.")
+                else:
+                    print(f"Factors of {number}:")
+                    print(find_factors(abs(number)))
+
+            elif choice == 7:
+                print(f"Reverse of {number}: {reverse_number(number)}")
+
+            elif choice == 8:
+                if number < 0:
+                    print("Armstrong check is implemented for non-negative numbers.")
+                elif is_armstrong(number):
+                    print(f"{number} is an Armstrong number.")
+                else:
+                    print(f"{number} is not an Armstrong number.")
+
+            else:
+                print("Invalid choice. Please select an option from 1 to 9.")
+
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+        input("\nPress Enter to continue...")
+
+
+if __name__ == "__main__":
+    main()
