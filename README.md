@@ -116,3 +116,8 @@ program.
 
 The repository will continue to evolve as I improve and revisit
 earlier projects.
+
+## 📈 Progress
+
+This repository is a record of my progression from Python fundamentals
+toward larger projects in automation, engineering, and aerospace.
